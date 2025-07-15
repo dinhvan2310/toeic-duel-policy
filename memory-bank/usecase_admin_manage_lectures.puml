@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Quản trị viên" as Admin
+
+package "TOEIC Duel App" {
+  usecase "Quản lý bài giảng, chủ đề" as UC_ManageLectures
+  usecase "Xem danh sách bài giảng, chủ đề" as UC_ViewLectures
+  usecase "Thêm bài giảng, chủ đề" as UC_AddLecture
+  usecase "Sửa bài giảng, chủ đề" as UC_EditLecture
+  usecase "Xóa bài giảng, chủ đề" as UC_DeleteLecture
+
+  UC_ManageLectures --> UC_ViewLectures : <<include>>
+  UC_ManageLectures --> UC_AddLecture : <<include>>
+  UC_ManageLectures --> UC_EditLecture : <<include>>
+  UC_ManageLectures -down-> UC_DeleteLecture : <<include>>
+}
+
+Admin --> UC_ManageLectures
+
+@enduml 

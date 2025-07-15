@@ -1,0 +1,82 @@
+@startuml
+class User {
+  +id: UUID
+  +email: String
+  +name: String
+  +role: String
+  +createdAt: DateTime
+}
+
+class PracticeSession {
+  +id: UUID
+  +userId: UUID
+  +part: Int
+  +startedAt: DateTime
+  +finishedAt: DateTime
+}
+
+class Question {
+  +id: UUID
+  +part: Int
+  +content: String
+  +explanation: String
+  +difficulty: String
+  +topicId: UUID
+}
+
+class Answer {
+  +id: UUID
+  +questionId: UUID
+  +content: String
+  +isCorrect: Boolean
+}
+
+class UserAnswer {
+  +id: UUID
+  +userId: UUID
+  +questionId: UUID
+  +answerId: UUID
+  +answeredAt: DateTime
+  +isCorrect: Boolean
+}
+
+class Vocabulary {
+  +id: UUID
+  +word: String
+  +phonetic: String
+  +meaning: String
+  +example: String
+}
+
+class Lecture {
+  +id: UUID
+  +title: String
+  +content: String
+  +topicId: UUID
+}
+
+class Topic {
+  +id: UUID
+  +name: String
+}
+
+class Progress {
+  +id: UUID
+  +userId: UUID
+  +date: Date
+  +part: Int
+  +correctCount: Int
+  +totalCount: Int
+}
+
+User "1" -- "0..*" PracticeSession
+User "1" -- "0..*" UserAnswer
+User "1" -- "0..*" Progress
+PracticeSession "1" -- "0..*" UserAnswer
+Question "1" -- "1..*" Answer
+Question "1" -- "0..*" UserAnswer
+Question "1" -- "0..1" Topic
+Lecture "1" -- "0..1" Topic
+Vocabulary "0..*" -- "0..1" Topic
+
+@enduml 

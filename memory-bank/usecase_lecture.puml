@@ -1,0 +1,10 @@
+@startuml
+actor "Người học TOEIC" as User
+
+rectangle "TOEIC Duel App" {
+  User --> (Xem danh sách bài giảng)
+  (Xem danh sách bài giảng) --> (Chọn bài giảng) : <<include>>
+  (Chọn bài giảng) --> (Xem nội dung bài giảng) : <<include>>
+  (Xem nội dung bài giảng) --|> (Học bằng chatbot) : <<extend>>
+}
+@enduml

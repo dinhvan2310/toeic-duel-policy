@@ -1,0 +1,18 @@
+@startuml
+start
+:Chọn part (1-7);
+:Hiển thị danh sách câu hỏi;
+while (Còn muốn làm câu hỏi?) is (Có)
+  :Chọn câu hỏi;
+  :Hiển thị nội dung câu hỏi;
+  :Chọn đáp án;
+  if (Đã chọn đáp án?) then (Có)
+    :Kiểm tra đáp án;
+    :Hiển thị kết quả và giải thích;
+  else (Không)
+    :Yêu cầu chọn đáp án;
+    - Quay lại bước chọn đáp án
+  endif
+endwhile (Không)
+stop
+@enduml

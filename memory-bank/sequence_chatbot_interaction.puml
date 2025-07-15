@@ -1,0 +1,36 @@
+@startuml
+actor "Người học TOEIC" as User
+participant "Ứng dụng" as App
+participant "Chatbot (Rasa)" as Bot
+participant "Supabase" as DB
+
+User -> App: Truy cập chức năng chatbot
+App -> Bot: Khởi tạo phiên trò chuyện
+Bot --> App: (Tùy chọn) Gửi tin nhắn khơi gợi ("Hôm nay bạn thế nào?", ...)
+App -> User: Hiển thị tin nhắn khơi gợi (nếu có)
+
+User -> App: Nhập câu hỏi hoặc trả lời
+App -> Bot: Gửi câu hỏi/yêu cầu
+
+alt Tra cứu từ vựng
+  Bot -> DB: Yêu cầu dữ liệu từ vựng
+  DB --> Bot: Trả về nghĩa, phiên âm, ví dụ, phát âm
+  Bot -> App: Trả lời tra cứu từ vựng
+  App -> User: Hiển thị kết quả tra cứu
+else Giải thích câu hỏi TOEIC
+  Bot -> DB: Yêu cầu dữ liệu câu hỏi, đáp án, lời giải
+  DB --> Bot: Trả về nội dung câu hỏi, đáp án, lời giải
+  Bot -> App: Trả lời giải thích câu hỏi
+  App -> User: Hiển thị giải thích
+else Gợi ý học tập
+  Bot -> DB: Yêu cầu tiến độ học tập, lịch sử làm bài
+  DB --> Bot: Trả về dữ liệu tiến độ, lịch sử
+  Bot -> App: Gợi ý luyện tập cá nhân hóa
+  App -> User: Hiển thị gợi ý học tập
+else Hỏi đáp thường thức
+  Bot -> App: Trả lời hỏi đáp thường thức
+  App -> User: Hiển thị câu trả lời
+end
+
+User -> App: (Lặp lại nếu muốn tiếp tục trò chuyện)
+@enduml 

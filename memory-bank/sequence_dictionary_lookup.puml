@@ -1,0 +1,20 @@
+@startuml
+actor "Người học TOEIC" as User
+participant "Ứng dụng" as App
+participant "Supabase" as DB
+
+User -> App: Nhập từ khóa tra cứu
+App -> DB: Gửi request tra cứu từ vựng
+DB --> App: Trả về kết quả tìm kiếm
+App -> User: Hiển thị danh sách từ vựng phù hợp
+
+User -> App: Chọn từ vựng
+App -> DB: Lấy chi tiết từ vựng
+DB --> App: Trả về nghĩa, phiên âm, ví dụ, phát âm
+App -> User: Hiển thị chi tiết từ vựng
+
+User -> App: (Tùy chọn) Lưu từ vào bộ sưu tập
+App -> DB: Lưu từ vào bộ sưu tập
+DB --> App: Xác nhận lưu thành công
+App -> User: Thông báo lưu thành công
+@enduml 

@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Quản trị viên" as Admin
+
+package "TOEIC Duel App" {
+  usecase "Quản lý người dùng" as UC_ManageUsers
+  usecase "Xem danh sách người dùng" as UC_ViewUsers
+  usecase "Thêm người dùng" as UC_AddUser
+  usecase "Xóa người dùng" as UC_DeleteUser
+  usecase "Khóa/mở khóa tài khoản" as UC_LockUnlockUser
+
+  UC_ManageUsers --> UC_ViewUsers : <<include>>
+  UC_ManageUsers --> UC_AddUser : <<include>>
+  UC_ManageUsers -down-> UC_DeleteUser : <<include>>
+  UC_ManageUsers -down-> UC_LockUnlockUser : <<include>>
+}
+
+Admin --> UC_ManageUsers
+
+@enduml 

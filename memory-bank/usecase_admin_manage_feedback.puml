@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Quản trị viên" as Admin
+
+package "TOEIC Duel App" {
+  usecase "Quản lý phản hồi người dùng" as UC_ManageFeedback
+  usecase "Xem danh sách phản hồi" as UC_ViewFeedbackList
+  usecase "Xem chi tiết phản hồi" as UC_ViewFeedbackDetail
+  usecase "Xóa phản hồi" as UC_DeleteFeedback
+  usecase "Trả lời phản hồi" as UC_ReplyFeedback
+
+  UC_ManageFeedback --> UC_ViewFeedbackList : <<include>>
+  UC_ViewFeedbackList --> UC_ViewFeedbackDetail : <<include>>
+  UC_ViewFeedbackDetail -down-> UC_DeleteFeedback : <<include>>
+  UC_ViewFeedbackDetail -down-> UC_ReplyFeedback : <<include>>
+
+  note right of UC_ViewFeedbackDetail
+    Phản hồi gồm:
+    - Đáp án câu hỏi
+    - Lời giải thích câu hỏi
+    - Nghĩa từ vựng
+  end note
+}
+
+Admin --> UC_ManageFeedback
+
+@enduml

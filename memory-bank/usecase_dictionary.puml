@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Người học TOEIC" as Learner
+
+rectangle "TOEIC Duel App" {
+  usecase "Tra cứu từ điển" as UC_Dictionary
+  usecase "Tìm kiếm từ vựng" as UC_SearchWord
+  usecase "Xem nghĩa, ví dụ" as UC_ViewMeaning
+  usecase "Xem phiên âm" as UC_ViewPhonetic
+  usecase "Nghe phát âm" as UC_ListenPronounce
+  usecase "Thêm vào từ điển cá nhân" as UC_AddPersonal
+  usecase "Xem từ điển cá nhân" as UC_ViewPersonal
+
+  UC_Dictionary --> UC_SearchWord : <<include>>
+  UC_Dictionary -down-> UC_ViewPersonal : <<extend>>
+
+  UC_SearchWord -down-> UC_ViewMeaning : <<include>>
+  UC_SearchWord -down-> UC_ViewPhonetic : <<include>>
+  UC_SearchWord -down-> UC_ListenPronounce : <<include>>
+  UC_ViewMeaning -down-> UC_AddPersonal : <<include>>
+}
+
+Learner --> UC_Dictionary
+
+@enduml 

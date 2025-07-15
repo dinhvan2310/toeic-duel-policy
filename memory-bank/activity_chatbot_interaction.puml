@@ -1,0 +1,17 @@
+@startuml
+start
+:Truy cập chức năng chatbot;
+while (Còn muốn trò chuyện?) is (Có)
+  if (Chatbot chủ động gợi ý?) then (Có)
+    :Chatbot gửi tin nhắn khơi gợi (ví dụ: "Hôm nay bạn thế nào?", "Bạn muốn luyện part nào?");
+    :Người dùng trả lời hoặc bỏ qua;
+  else (Không)
+    :Người dùng nhập câu hỏi hoặc yêu cầu;
+  endif
+  :Chatbot xử lý và trả lời (tra cứu từ vựng, giải thích bài tập, gợi ý học tập...);
+  if (Chatbot không hiểu?) then (Có)
+    :Hiển thị thông báo "Xin lỗi, tôi chưa hiểu yêu cầu của bạn.";
+  endif
+endwhile (Không)
+stop
+@enduml 

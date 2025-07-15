@@ -1,0 +1,19 @@
+@startuml
+start
+:Truy cập chức năng tra cứu từ điển;
+while (Còn muốn tra cứu?) is (Có)
+  :Nhập từ khóa;
+  if (Đã nhập từ khóa?) then (Có)
+    :Tìm kiếm từ vựng;
+    if (Tìm thấy từ?) then (Có)
+      :Hiển thị nghĩa, phiên âm, ví dụ, phát âm;
+      :(Tùy chọn) Lưu từ vào bộ sưu tập;
+    else (Không)
+      :Hiển thị thông báo "Không tìm thấy từ vựng phù hợp";
+    endif
+  else (Không)
+    :Yêu cầu nhập từ khóa;
+  endif
+endwhile (Không)
+stop
+@enduml 

@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Người học TOEIC" as Learner
+
+package "TOEIC Duel App" {
+  usecase "Tương tác với chatbot" as UC_Chatbot
+  usecase "Đặt câu hỏi cho chatbot" as UC_Ask
+  usecase "Nhận phản hồi" as UC_ReceiveReply
+  usecase "Lưu hội thoại" as UC_SaveConversation
+  usecase "Xem lại hội thoại cũ" as UC_ViewHistory
+
+  UC_Chatbot --> UC_Ask : <<include>>
+  UC_Ask --> UC_ReceiveReply : <<include>>
+  UC_ReceiveReply -down-> UC_SaveConversation : <<include>>
+  UC_Chatbot -down-> UC_ViewHistory : <<extend>>
+}
+
+Learner --> UC_Chatbot
+
+@enduml 

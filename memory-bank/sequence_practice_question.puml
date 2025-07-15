@@ -1,0 +1,29 @@
+@startuml
+actor "Người học TOEIC" as User
+participant "Ứng dụng" as App
+participant "Supabase" as DB
+
+User -> App: Chọn part (1-7)
+App -> DB: Lấy danh sách câu hỏi theo part
+DB --> App: Trả về danh sách câu hỏi
+App -> User: Hiển thị danh sách câu hỏi
+
+User -> App: Chọn câu hỏi
+App -> DB: Lấy dữ liệu câu hỏi
+DB --> App: Trả về nội dung câu hỏi
+App -> User: Hiển thị nội dung câu hỏi
+
+alt Xem giải thích trước khi trả lời
+  User -> App: Chọn "Xem giải thích"
+  App -> DB: Lấy giải thích câu hỏi
+  DB --> App: Trả về giải thích
+  App -> User: Hiển thị giải thích
+end
+
+User -> App: Chọn đáp án và xác nhận
+App -> DB: Gửi đáp án, kiểm tra kết quả
+DB --> App: Trả về kết quả đúng/sai, giải thích (nếu chưa xem)
+App -> User: Hiển thị kết quả và giải thích
+
+User -> App: Chọn câu hỏi tiếp theo (lặp lại nếu muốn)
+@enduml 

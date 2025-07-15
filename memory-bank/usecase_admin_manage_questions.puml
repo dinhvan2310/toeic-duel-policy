@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Quản trị viên" as Admin
+
+package "TOEIC Duel App" {
+  usecase "Quản lý câu hỏi" as UC_ManageQuestions
+  usecase "Xem danh sách câu hỏi" as UC_ViewQuestions
+  usecase "Thêm câu hỏi" as UC_AddQuestion
+  usecase "Sửa câu hỏi" as UC_EditQuestion
+  usecase "Xóa câu hỏi" as UC_DeleteQuestion
+
+  UC_ManageQuestions --> UC_ViewQuestions : <<include>>
+  UC_ManageQuestions --> UC_AddQuestion : <<include>>
+  UC_ManageQuestions --> UC_EditQuestion : <<include>>
+  UC_ManageQuestions -down-> UC_DeleteQuestion : <<include>>
+}
+
+Admin --> UC_ManageQuestions
+
+@enduml 

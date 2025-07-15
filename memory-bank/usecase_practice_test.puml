@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Người học TOEIC" as Learner
+
+package "TOEIC Duel App" {
+  usecase "Luyện thi TOEIC" as UC_Practice
+  usecase "Làm câu hỏi" as UC_DoQuestion
+  usecase "Xem đáp án / giải thích" as UC_ViewAnswer
+  usecase "Lưu kết quả vào hồ sơ" as UC_SaveResult
+  usecase "Xem lịch sử làm bài" as UC_ViewHistory
+
+  UC_Practice --> UC_DoQuestion : <<include>>
+  UC_Practice -down-> UC_ViewHistory : <<extend>>
+  UC_DoQuestion -down-> UC_ViewAnswer : <<include>>
+  UC_DoQuestion -down-> UC_SaveResult : <<include>>
+}
+
+Learner --> UC_Practice
+
+@enduml

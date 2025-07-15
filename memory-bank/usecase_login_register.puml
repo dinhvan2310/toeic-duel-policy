@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+left to right direction
+
+actor "Người học TOEIC" as Learner
+actor "Quản trị viên" as Admin
+
+package "TOEIC Duel App" {
+  usecase "Đăng nhập" as UC_Login
+  usecase "Đăng ký" as UC_Register
+  usecase "Đăng nhập Google/Facebook" as UC_Social
+
+  UC_Login .down.> UC_Social : <<include>>
+}
+
+Learner --> UC_Login
+Learner --> UC_Register
+Admin --> UC_Login
+
+@enduml 
